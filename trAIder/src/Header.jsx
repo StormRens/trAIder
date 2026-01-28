@@ -1,11 +1,12 @@
 function Header(){
 
-    //THINGS WE NEED TO DO: 
+    //TODO: 
         //Center the Title or add a nav bar that has the user profile in the top left, and maybe a dropdown on left side
         //Get the little details like how it is organized set.
+        //Need to work on the nav bar and getting it all set up.
+            //this will then lead to more navigation and redirection functionality.
 
-    
-    //WAITING ON A PROTOTYPE TO BE MADE
+    //!WAITING ON A PROTOTYPE TO BE MADE
     return(
         <header>
             <h1>this is the test title for the website</h1>

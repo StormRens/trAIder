@@ -1,4 +1,7 @@
 
+//this is a test file, this can be altered at a later date to have more relevant info.
+//More of an example of how to use JS constants.
+
 function Food(){
     //Here is where you can create a JS constant/variable.
     const food1 = "Orange"; 
