@@ -9,7 +9,7 @@ function Header(){
     //!WAITING ON A PROTOTYPE TO BE MADE
     return(
         <header>
-            <h1>this is the test title for the website</h1>
+            <h1>Welcome to trAIder</h1>
             <nav>
                 <ul>
                     <li><a href = "#">Home</a></li>

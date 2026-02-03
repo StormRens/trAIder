@@ -6,6 +6,7 @@ function Food(){
     //Here is where you can create a JS constant/variable.
     const food1 = "Orange"; 
     const food2 = "Bananna"; 
+    
 
 
     return(

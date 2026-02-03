@@ -6,12 +6,14 @@ import Food from './Food.jsx';
 //When we put things in here, it does matter the order and the syntax.
 function App() {
   return(
-    <>
-      
+    <div className="app">
+      <>
       <Header/>
       <Food/>
       <Footer/>
     </>
+    </div>
+
   );
 }
 
