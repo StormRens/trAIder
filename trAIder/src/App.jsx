@@ -7,11 +7,11 @@ import Food from './Food.jsx';
 function App() {
   return(
     <div className="app">
-      <>
       <Header/>
-      <Food/>
+      <main className="content">
+          {/*The main content is going to go here*/}
+      </main>
       <Footer/>
-    </>
     </div>
 
   );
