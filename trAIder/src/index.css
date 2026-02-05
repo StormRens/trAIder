@@ -247,3 +247,91 @@ h1 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/*
+/* Stock Ticker Container */
+.stock-ticker-container {
+    background: #1a1a1a;
+    overflow: hidden;
+    border-bottom: 1px solid #333;
+    padding: 0.75rem 0;
+}
+
+/* Scrolling container */
+.stock-ticker-scroll {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 30s linear infinite;
+    width: fit-content;
+}
+
+/* Pause animation on hover */
+.stock-ticker-scroll:hover {
+    animation-play-state: paused;
+}
+
+/* Scroll animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Individual stock item */
+.stock-ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: #222;
+    border-radius: 8px;
+    min-width: 250px;
+}
+
+/* Stock symbol */
+.ticker-symbol {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+    min-width: 60px;
+}
+
+/* Price and change info */
+.ticker-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 100px;
+}
+
+.ticker-price {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.ticker-change {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.ticker-change.positive {
+    color: #10b981; /* Green for positive */
+}
+
+.ticker-change.negative {
+    color: #ef4444; /* Red for negative */
+}
+
+/* Mini chart */
+.ticker-chart {
+    display: flex;
+    align-items: center;
+}
+
+.sparkline {
+    display: block;
+}

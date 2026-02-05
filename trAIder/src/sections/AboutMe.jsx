@@ -1,4 +1,4 @@
-
+//This is the about me, talk about the AI, Who built it and any sponsors can go here as well, nothing too crazy.
 
 function AboutMe(){
     return (
