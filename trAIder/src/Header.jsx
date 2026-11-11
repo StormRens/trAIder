@@ -2,7 +2,7 @@
 //TODO: Also need to set the graphs on the screen and have the top stocks/ETFs up there.
 
 import { useState } from "react";
-import SidePanel from "./sidepanel";
+import SidePanel from "./SidePanel.jsx"
 
 function Header(){
     const [isPanelOpen, setIsPanelOpen] = useState(false);
