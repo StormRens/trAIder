@@ -6,6 +6,7 @@ import AboutMe from './sections/AboutMe.jsx';
 
 //This is where we are going to be adding things to the live/local website.
 //When we put things in here, it does matter the order and the syntax.
+//Check to make sure
 function App() {
 
   const [activeSelection, setActiveSelection] = useState('Stocks'); 
