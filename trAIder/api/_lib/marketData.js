@@ -29,7 +29,7 @@ export async function fetchDailyBars(ticker, outputsize = 300) {
   // Twelve Data reports many errors (bad symbol, rate limit) as HTTP 200 with a status field.
   if (json.status === 'error') {
     const status = json.code === 429 ? 429 : json.code === 400 || json.code === 404 ? 404 : 502;
-    throw httpError(json.message || 'Market data provider error', status);
+        if (status === 404) throw httpError(`No data found for ${ticker}. Check the symbol; it may also not be covered by the free plan.`, 404);
   }
   if (!Array.isArray(json.values) || json.values.length === 0) {
     throw httpError(`No price data found for ${ticker}`, 404);

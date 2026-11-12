@@ -4,8 +4,10 @@ import Footer from './Footer.jsx';
 import StockTicker from './StockTicker.jsx';
 import AboutMe from './sections/AboutMe.jsx';
 import Signals from './sections/Signals.jsx';
+import HowToUse from './sections/HowToUse.jsx';
 import { NAV_ITEMS } from './navItems.js';
 import { useSignals } from './useSignals.js';
+import { useWatchlist } from './useWatchlist.js';
 import './signals.css';
 
 function ComingSoon({ label }) {
@@ -19,7 +21,8 @@ function ComingSoon({ label }) {
 
 function App() {
   const [active, setActive] = useState('signals');
-  const { tickers, entries, quotes, reload, updatedAt, loading, failedAll } = useSignals();
+  const { watchlist, add, remove, isFull } = useWatchlist();
+  const { tickers, entries, quotes, reload, updatedAt, loading, failedAll } = useSignals(watchlist);
 
   const renderSection = () => {
     switch (active) {
@@ -32,10 +35,15 @@ function App() {
             updatedAt={updatedAt}
             loading={loading}
             failedAll={failedAll}
+            onAdd={add}
+            onRemove={remove}
+            isFull={isFull}
           />
         );
       case 'about':
         return <AboutMe />;
+      case 'howto':
+        return <HowToUse />;
       default:
         return <ComingSoon label={NAV_ITEMS.find((n) => n.key === active)?.label} />;
     }

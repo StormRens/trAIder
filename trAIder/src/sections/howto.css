@@ -1,0 +1,27 @@
+/* Extra styles for the How To Use page. Layout and headings come from about.css. */
+
+.steps { margin: 14px 0; padding: 0; list-style: none; counter-reset: step; display: grid; gap: 10px; }
+.steps li { position: relative; padding: 2px 0 2px 42px; min-height: 30px; line-height: 1.55; counter-increment: step; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink2);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.howto-sample { margin: 16px 0 22px; max-width: 420px; }
+.howto-sample-label { margin: 0 0 8px; color: var(--ink2); font-size: 0.85rem; }
+
+.legend, .glossary { margin: 0; display: grid; gap: 16px; }
+.legend > div, .glossary > div { margin: 0; }
+.legend dt, .glossary dt { font-weight: 500; margin-bottom: 2px; }
+.legend dd, .glossary dd { margin: 0; color: var(--ink2); line-height: 1.6; }

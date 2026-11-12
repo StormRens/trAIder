@@ -20,7 +20,7 @@ function Driver({ driver }) {
   );
 }
 
-export default function SignalCard({ ticker, entry }) {
+export default function SignalCard({ ticker, entry, children }) {
   const s = entry?.data;
 
   if (!s) {
@@ -29,6 +29,7 @@ export default function SignalCard({ ticker, entry }) {
         <article className="signal-card">
           <h3 className="signal-ticker">{ticker}</h3>
           <p className="signal-error">{entry.error}</p>
+          {children}
         </article>
       );
     }
@@ -97,10 +98,11 @@ export default function SignalCard({ ticker, entry }) {
         </ul>
       </details>
 
-      <p className="note signal-foot">
+        <p className="note signal-foot">
         Prices as of {s.data_as_of} · {s.horizon} view
         {entry.status === 'error' && <span className="neg"> · refresh failed: {entry.error}</span>}
       </p>
+      {children}
     </article>
   );
 }
