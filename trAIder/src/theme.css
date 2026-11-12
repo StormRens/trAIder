@@ -1,0 +1,45 @@
+/* Eyrie theme: cliffside daylight (light) and dusk (dark).
+   Every color is defined once here. The dark set applies automatically
+   when the iPhone is in dark mode. Components only use these variables. */
+
+:root {
+  color-scheme: light dark;
+
+  --page: #F3F6F9;     /* pale sky mist */
+  --band: #D6E4EF;     /* sky, used for the header */
+  --card: #FFFFFF;
+  --panel: #FFFFFF;
+  --ink: #1F262D;      /* granite, primary text */
+  --ink2: #55606B;     /* granite, secondary text */
+  --line: #D3DBE3;     /* hairlines and borders */
+  --track: #E5EBF0;    /* empty part of bars */
+  --amber: #D4912A;    /* the eye: logo, confidence, focus, active nav */
+  --up: #2A7A58;       /* buy, price up */
+  --down: #B0412F;     /* sell, price down */
+  --hold: #8A949E;
+  --scrim: rgba(31, 38, 45, 0.45);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --r-card: 12px;
+  --r-pill: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #10151B;
+    --band: #1A2733;
+    --card: #19212A;
+    --panel: #19212A;
+    --ink: #E8EEF4;
+    --ink2: #A3AFBB;
+    --line: #29333E;
+    --track: #26303A;
+    --amber: #E8B04A;
+    --up: #5CC29A;
+    --down: #EA8070;
+    --hold: #6B7681;
+    --scrim: rgba(0, 0, 0, 0.6);
+  }
+}

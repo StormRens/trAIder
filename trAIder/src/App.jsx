@@ -1,41 +1,54 @@
-import Header from './Header.jsx'
-import Footer from './Footer.jsx' 
-import StockTicker from './StockTicker.jsx'
 import { useState } from 'react';
+import Header from './Header.jsx';
+import Footer from './Footer.jsx';
+import StockTicker from './StockTicker.jsx';
 import AboutMe from './sections/AboutMe.jsx';
+import Signals from './sections/Signals.jsx';
+import { NAV_ITEMS } from './navItems.js';
+import { useSignals } from './useSignals.js';
+import './signals.css';
 
-//This is where we are going to be adding things to the live/local website.
-//When we put things in here, it does matter the order and the syntax.
-function App() {
-
-  const [activeSelection, setActiveSelection] = useState('Stocks'); 
-  
-  const renderSection = () => {
-    // For now, just return a placeholder until we build out all sections
-    switch(activeSelection) {
-      case 'about':
-        return <AboutMe />;
-      default:
-        return <div></div>;
-    }
-  }
-
-  return(
-    <div className="app">
-      {/* Header */}
-      <Header onNavigate = {setActiveSelection}/>
-
-      {/* Stock Ticker */}
-      <StockTicker/>
-
-      {/* Main Content Her */}
-      <main className="content">
-          {renderSection()}
-      </main>
-      <Footer/>
-    </div>
-
+function ComingSoon({ label }) {
+  return (
+    <section className="page-section">
+      <h2>{label}</h2>
+      <p className="updated">This section isn't built yet.</p>
+    </section>
   );
 }
 
-export default App
+function App() {
+  const [active, setActive] = useState('signals');
+  const { tickers, entries, quotes, reload, updatedAt, loading, failedAll } = useSignals();
+
+  const renderSection = () => {
+    switch (active) {
+      case 'signals':
+        return (
+          <Signals
+            tickers={tickers}
+            entries={entries}
+            onReload={reload}
+            updatedAt={updatedAt}
+            loading={loading}
+            failedAll={failedAll}
+          />
+        );
+      case 'about':
+        return <AboutMe />;
+      default:
+        return <ComingSoon label={NAV_ITEMS.find((n) => n.key === active)?.label} />;
+    }
+  };
+
+  return (
+    <div className="app">
+      <Header onNavigate={setActive} active={active} />
+      <StockTicker quotes={quotes} loading={loading} />
+      <main className="content">{renderSection()}</main>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;

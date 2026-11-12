@@ -1,0 +1,100 @@
+/* Signals screen. One column on phones, more on wider screens. */
+
+.page-section { max-width: 1100px; margin: 0 auto; padding: 20px 14px 8px; }
+.section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.section-head h2 { font-size: 1.75rem; }
+.updated { margin: 2px 0 0; color: var(--ink2); font-size: 0.85rem; }
+
+.btn-secondary {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.btn-secondary:hover:not(:disabled) { border-color: var(--ink2); }
+.btn-secondary:disabled { color: var(--ink2); cursor: wait; }
+
+.alert { margin: 0 0 14px; padding: 12px 14px; border: 1px solid var(--down); border-radius: 8px; line-height: 1.45; }
+
+.signal-grid { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 700px) { .signal-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); } }
+
+.signal-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: 16px;
+  transition: opacity 0.2s ease;
+}
+.signal-card.refreshing { opacity: 0.6; }
+
+.signal-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.signal-ticker { font-size: 1.45rem; }
+.signal-price { margin-top: 2px; color: var(--ink2); font-variant-numeric: tabular-nums; }
+.signal-price .chg { margin-left: 6px; }
+
+.pos { color: var(--up); }
+.neg { color: var(--down); }
+
+.pill {
+  padding: 3px 12px;
+  border: 1px solid var(--hold);
+  border-radius: var(--r-pill);
+  color: var(--ink2);
+  font-weight: 500;
+}
+.pill.buy  { border-color: var(--up);   color: var(--up);   background: color-mix(in srgb, var(--up) 10%, transparent); }
+.pill.sell { border-color: var(--down); color: var(--down); background: color-mix(in srgb, var(--down) 10%, transparent); }
+
+.confidence { margin-top: 16px; }
+.confidence-row { display: flex; justify-content: space-between; align-items: baseline; }
+.confidence-num { font-family: var(--font-display); font-size: 1.5rem; }
+.confidence-bar { height: 6px; margin: 6px 0; background: var(--track); border-radius: 3px; overflow: hidden; }
+.confidence-bar i { display: block; height: 100%; background: var(--amber); border-radius: 3px; }
+.note { margin: 0; color: var(--ink2); font-size: 0.82rem; line-height: 1.4; }
+
+/* The driver bars are the centerpiece of the card. */
+.drivers-title { margin: 18px 0 10px; font-size: 1.05rem; }
+.drivers { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.driver-head { display: flex; justify-content: space-between; font-size: 0.9rem; }
+.driver-track { position: relative; height: 8px; margin: 6px 0 0; background: var(--track); border-radius: 2px; }
+.driver-mid { position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--ink2); }
+.driver-fill { position: absolute; top: 0; bottom: 0; }
+.driver-fill.pos { left: 50%; background: var(--up); }
+.driver-fill.neg { right: 50%; background: var(--down); }
+
+.more { margin-top: 14px; padding-top: 2px; border-top: 1px solid var(--line); }
+.more summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  list-style: none;
+  color: var(--ink2);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.more summary::-webkit-details-marker { display: none; }
+.more summary::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-right: 4px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.more[open] summary::after { transform: rotate(-135deg); }
+.more h4 { margin: 12px 0 6px; font-size: 0.95rem; }
+.plain-list { margin: 0; padding-left: 1.1rem; color: var(--ink2); font-size: 0.88rem; line-height: 1.5; }
+.signal-foot { margin: 10px 0 0; }
+
+.signal-error { margin: 10px 0 0; color: var(--down); line-height: 1.45; }
+.skeleton-bar { height: 12px; margin: 14px 0; border-radius: 6px; background: var(--track); }
+.skeleton-bar.short { width: 55%; }
+
+.disclaimer { margin: 18px 0 0; color: var(--ink2); font-size: 0.82rem; line-height: 1.5; }

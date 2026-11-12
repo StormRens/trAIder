@@ -1,48 +1,51 @@
+import { NAV_ITEMS } from './navItems.js';
+import EyrieMark from './EyrieMark.jsx';
 
+function SidePanel({ isOpen, onClose, onSelect, active }) {
+  return (
+    <>
+      <aside className={`side-panel ${isOpen ? 'open' : ''}`} aria-hidden={!isOpen}>
+        <div className="panel-top">
+          <span className="wordmark">
+            <EyrieMark width={22} />
+            Eyrie
+          </span>
+          <button type="button" className="icon-btn" onClick={onClose} aria-label="Close menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
 
-function SidePanel({isOpen, onClose}){
-    //This is The side panel code from the main header.
-    return(
-        <>  
-            {/* Main side panel container. */}
-            <div className= {`side-panel ${isOpen ? 'open' : ''}`} >
-                <button
-                    className = "close-btn"
-                    onClick = {onClose}
-                > X </button>   {/* This is the close button icon. */}
+        <nav className="panel-nav">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              className={`panel-btn ${active === item.key ? 'active' : ''}`}
+              onClick={() => {
+                onSelect(item.key);
+                onClose();
+              }}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
 
-                {/* Nav Menu buttons. */}
-                <nav className="panel-nav">
-                    <button className="panel-btn">About Me</button>
-                    <button className="panel-btn">How To Use</button>
-                    <button className="panel-btn">Top Stories</button>
-                    <button className="panel-btn">Top Stocks</button>
-                    <button className="panel-btn">Top ETFs</button>
-                    <button className="panel-btn">Top Movers</button>
-                </nav>
-                
-                {/* Here is the Profile button on the side panel.*/}
-                <div className="panel-profile">
-                    <div className="profile-avatar">
-                        {/* Placeholder for profile picture - you can replace with actual image */}
-                        <div className="avatar-circle">U</div>
-                    </div>
-                    <div className="profile-info">
-                        <div className="profile-name">Username</div>
-                        <div className="profile-email">user@example.com</div>
-                    </div>
-                </div>
+        {/* Profile placeholder, to be connected to real accounts later */}
+        <div className="panel-profile">
+          <span className="avatar">U</span>
+          <div className="profile-info">
+            <div className="profile-name">Username</div>
+            <div className="profile-email">user@example.com</div>
+          </div>
+        </div>
+      </aside>
 
-            {/* The click closes the panel. */}
-            </div>
-                {isOpen && (
-                        <div 
-                            className="overlay"
-                            onClick={onClose}
-                        ></div>
-                    )}
-        </>
-    )
+      {isOpen && <div className="overlay" onClick={onClose}></div>}
+    </>
+  );
 }
 
-export default SidePanel; 
+export default SidePanel;

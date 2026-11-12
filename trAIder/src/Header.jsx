@@ -1,44 +1,32 @@
-//TODO: Lets start to get the left panel done.
-//TODO: Also need to set the graphs on the screen and have the top stocks/ETFs up there.
+import { useState } from 'react';
+import SidePanel from './SidePanel.jsx';
+import EyrieMark from './EyrieMark.jsx';
 
-import { useState } from "react";
-import SidePanel from "./SidePanel.jsx"
+function Header({ onNavigate, active }) {
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
-function Header(){
-    const [isPanelOpen, setIsPanelOpen] = useState(false);
-    const [isProfileOpen, setIsProfileOpen] = useState(false); {/*May use this later if there is a popup/slideout for the profile. */}
+  return (
+    <>
+      <header className="site-header">
+        <button type="button" className="icon-btn" aria-label="Open menu" onClick={() => setIsPanelOpen(true)}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
 
-    return(
-        //This is the header title and button.
-        <>
-        <header className="site-header">
-            <div className="left-controls">
-                <button
-                    type = "button"
-                    className="btn"
-                    onClick={() => setIsPanelOpen(true)}
-                    >☰</button>
-            </div>
+        <h1 className="wordmark">
+          <EyrieMark />
+          Eyrie
+        </h1>
 
-            {/*Center Screen/panel */}
-            <h1 className="site-title"> Welcome to trAIder</h1>
-            <div className="right-spacer"></div>
+        <button type="button" className="icon-btn" aria-label="Profile">
+          <span className="avatar">U</span>
+        </button>
+      </header>
 
-            {/*Right Screen/panel */}
-            <div className="right-controls">
-                <button className="header-profile-btn">
-                    <div className="header-avatar-circle">U</div>
-                </button>
-            </div>
-        </header>
-
-        {/*Here is the side panel being called from SidePanel.jsx */}
-        <SidePanel 
-            isOpen={isPanelOpen}
-            onClose={() => setIsPanelOpen(false)}
-        />
-        </>
-    );
+      <SidePanel isOpen={isPanelOpen} onClose={() => setIsPanelOpen(false)} onSelect={onNavigate} active={active} />
+    </>
+  );
 }
 
 export default Header;

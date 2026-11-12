@@ -103,11 +103,19 @@ export function computeTrendSignal(ticker, bars) {
   if (rsi14 <= 30) risks.push('Oversold: RSI below 30, but falling prices can keep falling');
   if (vol != null && vol > 0.3) risks.push(`High volatility (${(vol * 100).toFixed(0)}% annualized)`);
 
-  const level = `$${sma200.toFixed(2)}`;
+  const upper = Math.max(sma50, sma200);
+  const lower = Math.min(sma50, sma200);
   const wouldChange =
-    action === 'buy' ? [`Close below the 200-day average (${level})`, '50-day average crossing below the 200-day']
-    : action === 'sell' ? [`Close back above the 200-day average (${level})`, '50-day average crossing above the 200-day']
-    : [`Close decisively above (${level}) with rising momentum`, `Close decisively below (${level}) with falling momentum`];
+    action === 'buy'
+      ? [`Close below the 200-day average ($${sma200.toFixed(2)})`, '50-day average crossing below the 200-day']
+      : action === 'sell'
+      ? [`Close back above the 200-day average ($${sma200.toFixed(2)})`, '50-day average crossing above the 200-day']
+      : [
+          `Close above $${upper.toFixed(2)} (both averages) with rising momentum`,
+          `Close below $${lower.toFixed(2)} (both averages) with falling momentum`,
+        ];
+
+  const prev = closes[closes.length - 2];
 
   return {
     ticker,
@@ -124,6 +132,12 @@ export function computeTrendSignal(ticker, bars) {
     })),
     risks,
     would_change_if: wouldChange,
+    quote: {
+      price: round(last, 2),
+      change: round(last - prev, 2),
+      changePercent: round((last / prev - 1) * 100, 2),
+      trend: closes.slice(-30).map((c) => round(c, 2)),
+    },
     metrics: {
       close: round(last, 2),
       sma50: round(sma50, 2),

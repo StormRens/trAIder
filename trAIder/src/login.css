@@ -1,0 +1,79 @@
+.login { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; background: var(--page); }
+
+.login-band {
+  padding: calc(44px + env(safe-area-inset-top, 0px)) 24px 32px;
+  background: var(--band);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.login-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: 2.7rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+.login-tag { margin: 8px 0 0; color: var(--ink2); }
+
+.login-card { width: 100%; max-width: 420px; margin: 0 auto; padding: 24px 20px calc(32px + env(safe-area-inset-bottom, 0px)); }
+
+.tabs { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+.tab {
+  margin-bottom: -1px;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--ink2);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.tab.on { border-bottom-color: var(--amber); color: var(--ink); }
+
+.field { display: block; margin-bottom: 16px; }
+.field > span { display: block; margin-bottom: 6px; color: var(--ink2); font-size: 0.9rem; }
+.field input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px; /* 16px stops iOS Safari from zooming into the field */
+}
+.field input:focus { outline: 2px solid var(--amber); outline-offset: 1px; border-color: transparent; }
+
+.pw { position: relative; }
+.pw input { padding-right: 70px; }
+.pw button {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  min-height: 36px;
+  padding: 0 10px;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink2);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.primary-btn {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--page);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.login-note { margin: 20px 0 0; color: var(--ink2); font-size: 0.85rem; line-height: 1.5; text-align: center; }
